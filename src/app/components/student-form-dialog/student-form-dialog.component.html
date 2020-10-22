@@ -1,0 +1,57 @@
+<div class="student-form">
+  <h2 *ngIf="!data">Enter Student Details</h2>
+  <h2 *ngIf="data">Edit Student Details</h2>
+  <form [formGroup]="studentForm">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Student Name</mat-label>
+      <input matInput type="text" formControlName="studentName" placeholder="Student Name">
+      <mat-error class="error"
+        *ngIf="studentForm.controls['studentName'].touched || studentForm.controls['studentName'].dirty && studentForm.controls['studentName'].errors?.required">
+        Student name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email Id</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="Email Id">
+      <mat-error class="error"
+        *ngIf="studentForm.controls['email'].touched || studentForm.controls['email'].dirty && studentForm.controls['email'].errors?.required">
+        Email is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Contact Number</mat-label>
+      <input matInput type="number" #input formControlName="contact" placeholder="Contact Number">
+      <mat-error class="error"
+        *ngIf="studentForm.controls['contact'].touched || studentForm.controls['contact'].dirty && studentForm.controls['contact'].errors?.required">
+        Contact is required.
+      </mat-error>
+
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput (click)="picker.open()" formControlName="dateOfBirth" [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error class="error"
+        *ngIf="studentForm.controls['dateOfBirth'].touched || studentForm.controls['dateOfBirth'].dirty && studentForm.controls['dateOfBirth'].errors?.required">
+        Date of birth is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-radio-group formControlName="gender" aria-label="Select an option">
+      <mat-radio-button value="Male">Male</mat-radio-button>
+      <mat-radio-button class="female" value="Female">Female</mat-radio-button>
+
+    </mat-radio-group>
+
+    <div class="text-right " style="margin-top: 25px;">
+      <button mat-raised-button (click)="dialogRef.close()" style="margin-right:4px;">Close</button>
+      <button mat-raised-button color="accent" (click)="submit()">Submit</button>
+    </div>
+  </form>
+</div>
