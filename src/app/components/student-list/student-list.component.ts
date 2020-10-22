@@ -30,7 +30,7 @@ export class StudentListComponent implements OnInit {
 
 
     const dialogRef = this.dialog.open(StudentFormDialogComponent, {
-      width: '350px',
+      width: '400px',
       data: data
     });
 

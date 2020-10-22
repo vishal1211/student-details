@@ -2,3 +2,28 @@ table {
     width: 100%;
     margin-top: 10px;
   }
+
+
+  .w-20{
+    width: 20%;
+  }
+  .text-center{
+    text-align: center;
+  }
+  .manage-btn{
+    .mat-raised-button{
+      min-width: 50px !important;
+      padding: 0 8px;
+
+      .material-icons{
+        color: grey;
+        font-size: 19px;
+      }
+    }
+  }
+  .gray{
+    color: grey;
+  }
+  .bold{
+    font-weight: 600;
+  }

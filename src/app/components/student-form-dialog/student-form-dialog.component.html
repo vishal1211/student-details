@@ -7,7 +7,7 @@
       <mat-label>Student Name</mat-label>
       <input matInput type="text" formControlName="studentName" placeholder="Student Name">
       <mat-error class="error"
-        *ngIf="studentForm.controls['studentName'].touched || studentForm.controls['studentName'].dirty && studentForm.controls['studentName'].errors?.required">
+        *ngIf="studentForm.controls['studentName'].dirty && studentForm.controls['studentName'].errors?.required">
         Student name is required.
       </mat-error>
     </mat-form-field>
@@ -16,16 +16,22 @@
       <mat-label>Email Id</mat-label>
       <input matInput type="email" formControlName="email" placeholder="Email Id">
       <mat-error class="error"
-        *ngIf="studentForm.controls['email'].touched || studentForm.controls['email'].dirty && studentForm.controls['email'].errors?.required">
+        *ngIf="studentForm.controls['email'].errors &&  studentForm.controls['email'].dirty && studentForm.controls['email'].errors?.required">
         Email is required.
       </mat-error>
+      <mat-error class="error" *ngIf="studentForm.controls['email'].errors?.pattern">
+        Please enter valid email id..
+      </mat-error>
+      <!-- <div [hidden]="!emailref.errors?.pattern">
+        Invalid pattern
+      </div> -->
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Contact Number</mat-label>
       <input matInput type="number" #input formControlName="contact" placeholder="Contact Number">
       <mat-error class="error"
-        *ngIf="studentForm.controls['contact'].touched || studentForm.controls['contact'].dirty && studentForm.controls['contact'].errors?.required">
+        *ngIf="studentForm.controls['contact'].dirty && studentForm.controls['contact'].errors?.required">
         Contact is required.
       </mat-error>
 
@@ -38,7 +44,7 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <mat-error class="error"
-        *ngIf="studentForm.controls['dateOfBirth'].touched || studentForm.controls['dateOfBirth'].dirty && studentForm.controls['dateOfBirth'].errors?.required">
+        *ngIf="studentForm.controls['dateOfBirth'].dirty && studentForm.controls['dateOfBirth'].errors?.required">
         Date of birth is required.
       </mat-error>
     </mat-form-field>
@@ -46,11 +52,14 @@
     <mat-radio-group formControlName="gender" aria-label="Select an option">
       <mat-radio-button value="Male">Male</mat-radio-button>
       <mat-radio-button class="female" value="Female">Female</mat-radio-button>
-
+      <mat-error class="error gender-error"
+        *ngIf="studentForm.controls['gender'].dirty && studentForm.controls['gender'].errors?.required">
+        Gender is required.
+      </mat-error>
     </mat-radio-group>
 
     <div class="text-right " style="margin-top: 25px;">
-      <button mat-raised-button (click)="dialogRef.close()" style="margin-right:4px;">Close</button>
+      <button mat-raised-button (click)="dialogRef.close()" style="margin-right:8px;">Close</button>
       <button mat-raised-button color="accent" (click)="submit()">Submit</button>
     </div>
   </form>
